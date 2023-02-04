@@ -114,6 +114,13 @@ if __name__ == "__main__":
         if p2.Block == p2.Block:
             print(f"{p2.Name} attacked {p1.Name} so {p1.Name} is now out of the game.")
             p1.Ispalying = False
+
+        try:
+            system("cls")
+        except:
+            system("clear")
+
+
     if p1.Block == 100:
         print(f"{p1.Name} is winner and {p2.Name} is in location {p2.Block}")
     else:

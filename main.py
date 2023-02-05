@@ -5,10 +5,7 @@ class Player:
     def __init__(self,name):
         self.Name = name
         self.Ispalying = False
-        self.Block = "Out"
-    def Dice_rool(self) -> int:
-        return rand(1,6)
-    
+        self.Block = "Out"  
     def Move(self,dice:int,board:dict):
         self.Block += dice
         if self.Block > 100:

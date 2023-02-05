@@ -61,8 +61,14 @@ class Board:
     def __init__(self):
         while len(self.Snakes) < 8:
             temp = rand(11,99)
+            f = True
             if temp not in self.Snakes:
-                self.Snakes.append(temp)                
+                for i in self.Snakes:
+                    if i-1 == temp or i+1 == temp:
+                        f = False
+                if f :
+                    self.Snakes.append(temp)    
+
         while len(self.Ladders) < 8 :
             temp = rand(2,94)
             if (temp not in self.Snakes)and(temp not in self.Ladders):

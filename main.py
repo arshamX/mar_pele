@@ -1,5 +1,6 @@
 from random import randint as rand
 from os import system
+import time
 
 class Player:
     def __init__(self,name):
@@ -81,15 +82,18 @@ if __name__ == "__main__":
         print(f"{p2.Name} Location: {p2.Block}\n")
         input(f"{p1.Name} is rolling press any key")
         roll1 = Activity.Dicer_roll()
+        print(f"rolled {roll1}")
         if p1.Ispalying == False:
             if roll1 == 6:
                 p1.Ispalying =True
                 p1.Block = 1
                 temp = Activity.Dicer_roll()
+                print(f"rolled {temp}")
                 while temp == 6:
                     p1.Move(temp,board.Blocks)
                     Activity.Attack(player1=p1,player2=p2)
                     temp = Activity.Dicer_roll()
+                    print(f"rolled {temp}")
                 p1.Move(temp,board.Blocks)
                 Activity.Attack(player1=p1,player2=p2)
             else:
@@ -99,21 +103,25 @@ if __name__ == "__main__":
                 p1.Move(roll1,board.Blocks)
                 Activity.Attack(player1=p1,player2=p2)
                 roll1 = Activity.Dicer_roll()
+                print(f"rolled {roll1}")
             p1.Move(roll1,board.Blocks)
             Activity.Attack(player1=p1,player2=p2)
         
 
         input(f"{p2.Name} is rolling press any key")
         roll2 = Activity.Dicer_roll()
+        print(f"rolled {roll2}")
         if p2.Ispalying == False:
             if roll2 == 6:
                 p2.Ispalying =True
                 p2.Block = 1
                 temp = Activity.Dicer_roll()
+                print(f"rolled {temp}")
                 while temp == 6:
                     p2.Move(temp,board.Blocks)
                     Activity.Attack(player1=p2,player2=p1)
                     temp = Activity.Dicer_roll()
+                    print(f"rolled {temp}")
                 p2.Move(temp,board.Blocks)
                 Activity.Attack(player1=p2,player2=p1)
             else:
@@ -123,9 +131,10 @@ if __name__ == "__main__":
                 p2.Move(roll1,board.Blocks)
                 Activity.Attack(player1=p2,player2=p1)
                 roll2 = Activity.Dicer_roll()
+                print(f"rolled {roll2}")
             p2.Move(roll2,board.Blocks)
             Activity.Attack(player1=p2,player2=p1)
-
+        time.sleep(2)
         try:
             system("cls")
         except:

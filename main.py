@@ -149,5 +149,5 @@ if __name__ == "__main__":
 
     if p1.Block == 100:
         print(f"{p1.Name} is winner and {p2.Name} is in location {p2.Block}")
-    else:
+    elif p2.Block == 100:
         print(f"{p2.Name} is winner and {p1.Name} is in location {p1.Block}")

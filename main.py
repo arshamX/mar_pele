@@ -21,7 +21,19 @@ class Player:
             elif positaion == "L":
                 self.Block += 6
                 positaion = board[self.Block]
-            
+
+class Activity:
+    @staticmethod
+    def Dicer_roll() -> int:
+        return rand(1,6)
+    @staticmethod
+    def Attack(player1:Player,player2:Player) -> None:
+        if player1.Block == player2.Block:
+            print(f"{player1.Name} attacked {player2.Name} so {player2.Name} is now out of the game.")
+            player2.Ispalying = False
+            player2.Block = "Out"
+
+
 
 
         
@@ -71,49 +83,51 @@ if __name__ == "__main__":
         print(f"{p1.Name} Location: {p1.Block}\n")
         print(f"{p2.Name} Location: {p2.Block}\n")
         input(f"{p1.Name} is rolling press any key")
-        roll1 = p1.Dice_rool()
+        roll1 = Activity.Dicer_roll()
         if p1.Ispalying == False:
             if roll1 == 6:
                 p1.Ispalying =True
                 p1.Block = 1
-                temp = p1.Dice_rool()
+                temp = Activity.Dicer_roll()
                 while temp == 6:
                     p1.Move(temp,board.Blocks)
-                    temp = p1.Dice_rool()
+                    Activity.Attack(player1=p1,player2=p2)
+                    temp = Activity.Dicer_roll()
                 p1.Move(temp,board.Blocks)
+                Activity.Attack(player1=p1,player2=p2)
             else:
                 print(f"{p1.Name} did not get 6 maybe in net turn\n")
         else:
             while roll1 == 6:
                 p1.Move(roll1,board.Blocks)
-                roll1 = p1.Dice_rool()
+                Activity.Attack(player1=p1,player2=p2)
+                roll1 = Activity.Dicer_roll()
             p1.Move(roll1,board.Blocks)
-        if p1.Block == p2.Block:
-            print(f"{p1.Name} attacked {p2.Name} so {p2.Name} is now out of the game.")
-            p2.Ispalying = False
+            Activity.Attack(player1=p1,player2=p2)
         
 
         input(f"{p2.Name} is rolling press any key")
-        roll2 = p2.Dice_rool()
+        roll2 = Activity.Dicer_roll()
         if p2.Ispalying == False:
             if roll2 == 6:
                 p2.Ispalying =True
                 p2.Block = 1
-                temp = p2.Dice_rool()
+                temp = Activity.Dicer_roll()
                 while temp == 6:
                     p2.Move(temp,board.Blocks)
-                    temp = p2.Dice_rool()
+                    Activity.Attack(player1=p2,player2=p1)
+                    temp = Activity.Dicer_roll()
                 p2.Move(temp,board.Blocks)
+                Activity.Attack(player1=p2,player2=p1)
             else:
                 print(f"{p2.Name} did not get 6 maybe in net turn\n")
         else:
             while roll2 == 6:
                 p2.Move(roll1,board.Blocks)
-                roll2 = p2.Dice_rool()
+                Activity.Attack(player1=p2,player2=p1)
+                roll2 = Activity.Dicer_roll()
             p2.Move(roll2,board.Blocks)
-        if p2.Block == p2.Block:
-            print(f"{p2.Name} attacked {p1.Name} so {p1.Name} is now out of the game.")
-            p1.Ispalying = False
+            Activity.Attack(player1=p2,player2=p1)
 
         try:
             system("cls")
